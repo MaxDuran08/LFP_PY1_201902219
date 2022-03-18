@@ -6,7 +6,7 @@ class Reportes:
         text="""
         <html>
         <title>
-        Reporte #n
+        Reporte de Tokens
         </title>
         <head>
         <link rel="icon" href="https://i.ibb.co/xhT1W0r/escudo10.png">
@@ -62,7 +62,7 @@ class Reportes:
         text="""
         <html>
         <title>
-        Reporte #n
+        Reporte de Errores
         </title>
         <head>
         <link rel="icon" href="https://i.ibb.co/xhT1W0r/escudo10.png">

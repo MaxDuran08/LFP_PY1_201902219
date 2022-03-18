@@ -8,3 +8,6 @@ class Token:
 
     def imprimirData(self):
         print(self.lexema, self.linea, self.columna, self.tipo)
+
+    def valor(self):
+        return [str(self.lexema),str(self.tipo)]

@@ -1,11 +1,12 @@
 from tkinter import *
 from tkinter.ttk import Combobox
 from tkinter.messagebox import showinfo
-import easygui
-import os
+from Formulario import Formularios
 from Analizador import Analizador
 from Reportes import Reportes
 import webbrowser
+import easygui
+import os
 
 class VentanaMain:
     def __init__(self, master):
@@ -17,13 +18,12 @@ class VentanaMain:
         self.Data=""
         self.Reportes=Reportes()
         self.Gadgetts()
-
+        
     def Gadgetts(self):
         self.miFrame=Frame()
         self.miFrame.pack()
         self.miFrame.config(bg="pale green")
         self.miFrame.config(width="900", height="700")
-
         label_CargarArchivo=Label(self.miFrame, text="Cargar archivo .form",bg="pale green",fg="black", font=("Arial",12)).place(x=20,y=10)
         
         Faux=Frame()
@@ -72,6 +72,8 @@ class VentanaMain:
             print("[ANALIZAR]: Analizando...")
             analizador=Analizador()
             analizador.analizar(self.Data)
+            formulario=Formularios()
+            formulario.Crear(analizador.listaTokens)
             self.Reportes.ReporteTokens(analizador.listaTokens)
             self.Reportes.ReporteErrores(analizador.listaErrores)
         else:

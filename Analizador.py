@@ -90,7 +90,7 @@ class Analizador:
                 self.estado = 0
                 self.i -= 1
             else:
-                self.agregar_token(self.buffer,self.linea,self.columna,'identificador')
+                self.agregar_token(self.buffer,self.linea,self.columna,'palabra')
                 self.estado = 0
                 self.i -= 1
     
@@ -187,7 +187,7 @@ class Analizador:
     def imprimirErrores(self):
         '''Imprime una tabla con los errores'''
         x = PrettyTable()
-        x.field_names = ["DEscripcion","linea","columna"]
+        x.field_names = ["Descripcion","linea","columna"]
         for error_ in self.listaErrores:
             x.add_row([error_.descripcion, error_.linea, error_.columna])
         print(x)   

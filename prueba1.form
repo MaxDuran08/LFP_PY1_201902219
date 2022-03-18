@@ -4,7 +4,7 @@ formulario ~>> [
 		valor: "Nombre"
 	>,
 	<
-		tipo: "etiqueta"
+		tipo: "texto"
 		valor: "Nombre"
 		fondo: "Ingrese nombre"
 	>,
@@ -15,12 +15,12 @@ formulario ~>> [
 	>,
 	<
 		tipo: "grupo-option"
-		valor: "pais"
+		nombre: "pais"
 		valores: ['Guatemala', 'El Salvador', 'Honduras']
 	>,
 	<
 		tipo: "boton"
-		valor: "valor"
+		valor: "Valor"
 		evento: <EVENTO>
 	>
 ]
