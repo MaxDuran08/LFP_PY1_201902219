@@ -3,6 +3,7 @@ class Formularios:
         self.Lista=[]
         self.idGrupoOption=1
         self.idGrupoRadio=1
+        self.contador=0
         
 
     def Crear(self,Lista):
@@ -117,6 +118,10 @@ class Formularios:
 <body>
 <form>
         """
+
+        
+
+
         for i in self.Lista:
             print("==========================>")
             print(i)
@@ -131,7 +136,7 @@ class Formularios:
                 print("crea texto")
                 txt+="""
                 <div class="contenedorTxt">
-                <input class="Txt" type="text" name=\""""+i[1][1]+"""\" id="Nombre\" """
+                <input class="Txt" type="text" name=\""""+i[1][1]+"""\" id=\""""+i[1][1]+"""\" """
                 try:
                     txt+="""
                     placeholder=\""""+i[2][1]+"""\" 
@@ -141,6 +146,7 @@ class Formularios:
                 txt+=""">
                 </div>
                 """
+                self.contador+=1
             if i[0][1]=="grupo-radio":
                 print("crear grupo-radio")
                 txt+="""
@@ -162,6 +168,7 @@ class Formularios:
                 txt+="""</div>
                 </div>
                 """
+                self.contador+=1
                 self.idGrupoRadio+=1
             if i[0][1]=="grupo-option":
                 print("crear grupo-option")
@@ -187,7 +194,7 @@ class Formularios:
                 </div>
                 """
                 self.idGrupoOption+=1
-
+                self.contador+=1
             if i[0][1]=="boton":
                 print("crear boton")
                 txt+="""
@@ -195,9 +202,18 @@ class Formularios:
                 <input class="boton" type="submit" value=\""""+i[1][1]+"""\"/>
                 </div>
                 """
+                self.contador+=1
 
         txt+="""
 </form>
+<script>
+    let ids="""+str(self.contador)+"""
+    let component=[]
+    for(let i=0;i<ids;i++){
+        component[i]=document.getElementById(`${i}`)
+    }
+    alert(ids)
+</script>
 </body>
 </html>
         """
