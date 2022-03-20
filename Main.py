@@ -72,7 +72,7 @@ class VentanaMain:
             print("[ANALIZAR]: Analizando...")
             analizador=Analizador()
             analizador.analizar(self.Data)
-            formulario=Formularios()
+            formulario=Formularios(self.Data)
             formulario.Crear(analizador.listaTokens)
             self.Reportes.ReporteTokens(analizador.listaTokens)
             self.Reportes.ReporteErrores(analizador.listaErrores)

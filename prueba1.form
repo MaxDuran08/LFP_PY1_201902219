@@ -20,7 +20,22 @@ formulario ~>> [
 	>,
 	<
 		tipo: "boton"
-		valor: "Valor"
-		evento: <EVENTO>
+		valor: "Valor1"
+		evento: <entrada>
+	>,
+	<
+		tipo: "boton"
+		valor: "Valor1"
+		evento: <info>
+	>
+	<
+		tipo: "grupo-radio"
+		valor: "colores"
+		valores: ['verde' , 'rojo']
+	>,
+	<
+		tipo: "grupo-option"
+		nombre: "talla"
+		valores: ['M', 'S', 'XXXL']
 	>
 ]

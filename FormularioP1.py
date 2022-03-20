@@ -131,14 +131,14 @@ class Formularios:
                 print("crea etiqueta")
                 txt+="""
                 <div class="Etiqueta">
-                <label>"""+i[1][1]+""":</label>
+                <p>"""+i[1][1]+""":</p>
                 </div>
                 """
             if i[0][1]=="texto":
                 print("crea texto")
                 txt+="""
                 <div class="contenedorTxt">
-                <input class="Txt" type="text" autocomplete="off" name=\""""+i[1][1]+"""\" id=\""""+str(self.contador)+"""\" """
+                <input class="Txt" type="text" name=\""""+i[1][1]+"""\" id=\""""+str(self.contador)+"""\" """
                 try:
                     txt+="""
                     placeholder=\""""+i[2][1]+"""\" 
@@ -174,21 +174,23 @@ class Formularios:
             if i[0][1]=="grupo-option":
                 print("crear grupo-option")
                 txt+="""
-                <div class="contenerdoLista">
-                <label>Seleccione """+i[1][1]+""":</label>
-                <div class="lista" id=\""""+str(i[1][1])+"""\">
-                <select>
+                <div class="container">
+                <h2>"""+i[1][1]+"""</h2>
+                <div class="select-box">
+                <div id="c1">
                 """
                 
                 for j in range(len(i[2])):
                     if j>0:
                         txt+="""
-                        <option id=\""""+str(self.contador)+"""\">"""+str(i[2][j])+"""
-                        </option>
+                        <div class="option" id=\""""+str(self.contador)+"""\">
+                        <input type="radio" class="radio"  name=\""""+str(self.idGrupoRadio)+"""\">
+                        <label for=\""""+i[2][j]+"""\">"""+i[2][j]+"""</label>
+                        </div>
                         """
                         self.contador += 1
                 txt+="""
-                </select>
+                </div>
                 </div>
                 </div>
                 """
@@ -243,6 +245,7 @@ class Formularios:
         console.log(buttons)
     })
 </script>
+<script src="Formulario/main.js"></script>
 </body>
 </html>
         """
@@ -265,3 +268,4 @@ class Formularios:
             return True
         else:
             return False
+        #'reservada_valor' or 'reservada_tipo' or 'reservada_fondo' or 'reservada_nombre' or 'reservada_valores' or 'reservada_evento'

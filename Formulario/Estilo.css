@@ -2,15 +2,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'calibri';
   }
   
   body {
-    background-image: url('Imagenes/fondo.jpg');
+    background-color: #24303c8e;
   }
   
-  .form-formulario {
-    width: 400px;
-    background: #246955;
+    .form {
+    width: 500px;
+    background: #24303c;
     padding: 30px;
     margin: auto;
     margin-top: 100px;
@@ -19,13 +20,8 @@
     color: white;
     box-shadow: 7px 13px 37px #000;
   }
-  
-  .form-formulario h4 {
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
-  
-  .Txt {
+   
+    .Txt {
     width: 100%;
     background: #184639;
     padding: 10px;
@@ -35,32 +31,74 @@
     font-family: 'calibri';
     font-size: 18px;
     color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
+    .Txt:focus {
+      background: #184624;
+    }
   
-  .form-formulario p {
+    label {
     height: 40px;
     text-align: left;
-    font-size: 18px;
+    font-size: 19px;
     line-height: 40px;
-  }
-
-  .form-formulario label {
-    height: 40px;
-    text-align: left;
-    font-size: 18px;
-    line-height: 40px;
-  }
-
-  {
-
   }
     
-  .form-formulario .boton {
+    .boton {
     width: 100%;
-    background: #2da0bd;
-    border: none;
+    background: #184639;
+    border: 1px solid #1fc52d;
     padding: 12px;
     color: white;
     margin: 16px 0;
     font-size: 16px;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  
+
+  .boton:focus{
+    background: #184624;
+    border: 1px solid #ffffff;
+  }
+
+  .lista {
+    border-radius: 4px;
+    border: 1px solid #1fc52d;
+    margin:20px auto 15px auto;	
+    height:38px;
+    overflow: hidden;
+    width: 100%;
+    position:relative;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+ select {
+    width: 100%;
+    background: #184639;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: white;
+  }
+  select:focus{ 
+    outline: none;
+    border: 1px solid #ffffff;
+    background: #184624;
+  }
+ 
+ .lista::after{
+   content:"\025be";
+   display:table-cell;
+   padding-top:7px;
+   text-align:center;
+   width:30px;
+   height:30px;
+   background-color:#d9d9d9;
+   position:absolute;
+   top:0;
+   right:0px;	
+   pointer-events: none;
   }
