@@ -1,3 +1,5 @@
+import os
+import webbrowser
 class Formularios:
     def __init__(self,entrada):
         self.Lista=[]
@@ -125,17 +127,17 @@ class Formularios:
 
 
         for i in self.Lista:
-            print("==========================>")
-            print(i)
+            #print("==========================>")
+            #print(i)
             if i[0][1]=="etiqueta":
-                print("crea etiqueta")
+                #print("crea etiqueta")
                 txt+="""
                 <div class="Etiqueta">
                 <label>"""+i[1][1]+""":</label>
                 </div>
                 """
             if i[0][1]=="texto":
-                print("crea texto")
+                #print("crea texto")
                 txt+="""
                 <div class="contenedorTxt">
                 <input class="Txt" type="text" autocomplete="off" name=\""""+i[1][1]+"""\" id=\""""+str(self.contador)+"""\" """
@@ -150,7 +152,7 @@ class Formularios:
                 """
                 self.contador+=1
             if i[0][1]=="grupo-radio":
-                print("crear grupo-radio")
+                #print("crear grupo-radio")
                 txt+="""
                 <div class="containerRadio">
                 <div>
@@ -172,29 +174,28 @@ class Formularios:
                 """
                 self.idGrupoRadio += 1
             if i[0][1]=="grupo-option":
-                print("crear grupo-option")
+                #print("crear grupo-option")
                 txt+="""
                 <div class="contenerdoLista">
                 <label>Seleccione """+i[1][1]+""":</label>
-                <div class="lista" id=\""""+str(i[1][1])+"""\">
-                <select>
+                <div class="lista" >
+                <select id=\""""+str(self.contador)+"""\">
                 """
                 
                 for j in range(len(i[2])):
                     if j>0:
                         txt+="""
-                        <option id=\""""+str(self.contador)+"""\">"""+str(i[2][j])+"""
+                        <option>"""+str(i[2][j])+"""
                         </option>
                         """
-                        self.contador += 1
                 txt+="""
                 </select>
                 </div>
                 </div>
                 """
-                self.idGrupoRadio += 1
+                self.contador += 1
             if i[0][1]=="boton":
-                print("crear boton")
+                #print("crear boton")
                 txt+="""
                 <div class="Boton">
                 <input class="boton" type="submit"  info=\""""+i[2][1]+"""\" id=\""""+str(self.contador)+"""\" value=\""""+i[1][1]+"""\"/>
@@ -211,7 +212,6 @@ class Formularios:
     let infoEntrada = `""" + str(self.entrada)+"""`
     let ids="""+str(self.contador)+"""
     var component=[]
-    var componentesIngreso =[]
     let buttons;
     
     
@@ -221,26 +221,61 @@ class Formularios:
         }
         
         buttons = component.filter((data) => {
-            return data.type == 'submit'
+            try{
+                return data.type == 'submit'
+            }catch(e){
+                return
+            }
         })
 
-        componentesIngreso = component.filter((data) => {
-            return data.type != 'submit'
-        })
-        
         buttons.forEach((element, i ) => {
             element.addEventListener('click', (e) => {
                 const info = e.path[0].attributes.info.value
+                let Data = ''
                 if(info == 'info'){
-                    
-                    alert('Datos: ');
+                    let componentesIngreso = component.filter((data) => {
+                        try{
+                            return data.type != 'submit'
+                        }catch(e){
+                            return
+                        }
+                        
+                    })
+                    let j
+                    for(j=0; j<componentesIngreso.length; j++){
+                        try{
+                            if (componentesIngreso[j].type == 'text'){
+                                if(componentesIngreso[j].value != ''){
+                                    Data += `Selecciono: ${componentesIngreso[j].value} \n`
+                                }
+                            }
+                                
+                            if(componentesIngreso[j].classList.contains('OpccionesRadio')){
+                                for(let k=0; k<componentesIngreso[j].childNodes.length; k++){
+                                    if(componentesIngreso[j].childNodes[k].checked){
+                                        Data +=  `Selecciono: ${componentesIngreso[j].childNodes[3].innerText} \n`
+                                    }
+                                }
+                            }
+                            
+                            if(componentesIngreso[j].nodeName == 'SELECT') {
+                                Data += `Selecciono: ${componentesIngreso[j].value} \n` 
+                            }
+                        }catch(e){
+
+                        }
+                        
+                    }
+                    alert(Data)
                 }else if(info == 'entrada'){
                     alert(`Datos de entrada: ${infoEntrada}`);
                 }
             })
         })
+        const obtenerDatos = () => {
+            return 1
+        }
 
-        console.log(buttons)
     })
 </script>
 </body>
@@ -250,8 +285,11 @@ class Formularios:
             Reporte=open("./Formulario/Formulario.html","w+")
             Reporte.write(txt)
             Reporte.close
+            if os.path.exists("./Reportes/ReporteTokens.html"):
+                webbrowser.open_new_tab("file:///"+os.getcwd()+"/Formulario/Formulario.html")
+            print("[ANALIZAR]: Formulario creado")
         except:
-            True
+            print("[ERROR-ANALIZAR]: Error")
 
             
     def esReservadaFacil(self,lexema):

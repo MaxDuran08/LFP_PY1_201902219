@@ -40,16 +40,16 @@
                 
                 <div class="contenerdoLista">
                 <label>Seleccione pais:</label>
-                <div class="lista" id="pais">
-                <select>
+                <div class="lista" >
+                <select id="3">
                 
-                        <option id="3">Guatemala
+                        <option>Guatemala
                         </option>
                         
-                        <option id="4">El Salvador
+                        <option>El Salvador
                         </option>
                         
-                        <option id="5">Honduras
+                        <option>Honduras
                         </option>
                         
                 </select>
@@ -57,11 +57,11 @@
                 </div>
                 
                 <div class="Boton">
-                <input class="boton" type="submit"  info="entrada" id="6" value="Valor1"/>
+                <input class="boton" type="submit"  info="entrada" id="4" value="Valor1"/>
                 </div>
                 
                 <div class="Boton">
-                <input class="boton" type="submit"  info="info" id="7" value="Valor1"/>
+                <input class="boton" type="submit"  info="info" id="5" value="Valor1"/>
                 </div>
                 
                 <div class="containerRadio">
@@ -69,13 +69,13 @@
                     <label>colores:</label>
                 </div>
                 <div class="seleccionRadio">
-                <div class="OpccionesRadio" id="8">
-                    <input type="radio" class="radio" id="verde" name="3">
+                <div class="OpccionesRadio" id="6">
+                    <input type="radio" class="radio" id="verde" name="2">
                     <label for="verde">verde</label>
                 </div>
                 
-                <div class="OpccionesRadio" id="9">
-                    <input type="radio" class="radio" id="rojo" name="3">
+                <div class="OpccionesRadio" id="7">
+                    <input type="radio" class="radio" id="rojo" name="2">
                     <label for="rojo">rojo</label>
                 </div>
                 </div>
@@ -83,20 +83,45 @@
                 
                 <div class="contenerdoLista">
                 <label>Seleccione talla:</label>
-                <div class="lista" id="talla">
-                <select>
+                <div class="lista" >
+                <select id="8">
                 
-                        <option id="10">M
+                        <option>M
                         </option>
                         
-                        <option id="11">S
+                        <option>S
                         </option>
                         
-                        <option id="12">XXXL
+                        <option>XXXL
                         </option>
                         
                 </select>
                 </div>
+                </div>
+                
+                <div class="containerRadio">
+                <div>
+                    <label>hola:</label>
+                </div>
+                <div class="seleccionRadio">
+                <div class="OpccionesRadio" id="9">
+                    <input type="radio" class="radio" id="e" name="3">
+                    <label for="e">e</label>
+                </div>
+                
+                <div class="OpccionesRadio" id="10">
+                    <input type="radio" class="radio" id="jo" name="3">
+                    <label for="jo">jo</label>
+                </div>
+                </div>
+                </div>
+                
+                <div class="Etiqueta">
+                <label>Nombre:</label>
+                </div>
+                
+                <div class="Etiqueta">
+                <label>Nombre:</label>
                 </div>
                 
 </form>
@@ -143,12 +168,25 @@
 		tipo: "grupo-option"
 		nombre: "talla"
 		valores: ['M', 'S', 'XXXL']
+	>++++5+6+698989+98
+	,<
+		tipo: "grupo-radio"
+		valor: "hola"
+		valores: ['2e' , '1jo']
+	>,
+	<
+		tipo: "etiqueta"
+		valor: "Nombre"
 	>
+	,<
+		tipo: "etiqueta"
+		valor: "Nombre"
+	>
+
 ]
 `
-    let ids=13
+    let ids=11
     var component=[]
-    var componentesIngreso =[]
     let buttons;
     
     
@@ -158,26 +196,64 @@
         }
         
         buttons = component.filter((data) => {
-            return data.type == 'submit'
+            try{
+                return data.type == 'submit'
+            }catch(e){
+                return
+            }
         })
 
-        componentesIngreso = component.filter((data) => {
-            return data.type != 'submit'
-        })
-        
         buttons.forEach((element, i ) => {
             element.addEventListener('click', (e) => {
                 const info = e.path[0].attributes.info.value
+                let Data = ''
                 if(info == 'info'){
-                    
-                    alert('Datos: ');
+                    let componentesIngreso = component.filter((data) => {
+                        try{
+                            return data.type != 'submit'
+                        }catch(e){
+                            return
+                        }
+                        
+                    })
+                    let j
+                    for(j=0; j<componentesIngreso.length; j++){
+                        try{
+                            if (componentesIngreso[j].type == 'text'){
+                                if(componentesIngreso[j].value != ''){
+                                    Data += `Selecciono: ${componentesIngreso[j].value} 
+`
+                                }
+                            }
+                                
+                            if(componentesIngreso[j].classList.contains('OpccionesRadio')){
+                                for(let k=0; k<componentesIngreso[j].childNodes.length; k++){
+                                    if(componentesIngreso[j].childNodes[k].checked){
+                                        Data +=  `Selecciono: ${componentesIngreso[j].childNodes[3].innerText} 
+`
+                                    }
+                                }
+                            }
+                            
+                            if(componentesIngreso[j].nodeName == 'SELECT') {
+                                Data += `Selecciono: ${componentesIngreso[j].value} 
+` 
+                            }
+                        }catch(e){
+
+                        }
+                        
+                    }
+                    alert(Data)
                 }else if(info == 'entrada'){
                     alert(`Datos de entrada: ${infoEntrada}`);
                 }
             })
         })
+        const obtenerDatos = () => {
+            return 1
+        }
 
-        console.log(buttons)
     })
 </script>
 </body>

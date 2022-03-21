@@ -1,4 +1,3 @@
-from prettytable import PrettyTable
 from Error import Error
 from Token import Token
 
@@ -15,7 +14,6 @@ class Analizador:
     def agregar_token(self,caracter,linea,columna,token):
         self.listaTokens.append(Token(caracter,linea,columna,token))
         self.buffer = ''
-
 
     def agregar_error(self,caracter,linea,columna):
         self.listaErrores.append(Error(caracter, linea, columna))
@@ -175,19 +173,3 @@ class Analizador:
             elif self.estado == 11:
                 self.q11(cadena[self.i])
             self.i += 1    
-
-    def imprimirTokens(self):
-        '''Imprime una tabla con los tokens'''
-        x = PrettyTable()
-        x.field_names = ["Lexema","linea","columna","tipo"]
-        for token in self.listaTokens:
-            x.add_row([token.lexema, token.linea, token.columna,token.tipo])
-        print(x)
-
-    def imprimirErrores(self):
-        '''Imprime una tabla con los errores'''
-        x = PrettyTable()
-        x.field_names = ["Descripcion","linea","columna"]
-        for error_ in self.listaErrores:
-            x.add_row([error_.descripcion, error_.linea, error_.columna])
-        print(x)   

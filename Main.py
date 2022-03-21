@@ -82,8 +82,7 @@ class VentanaMain:
     def CargarArchivo(self):
         while True:
             try:
-                #ruta=easygui.fileopenbox(title="Abre el archivo tipo .form")
-                ruta="prueba1.form"
+                ruta=easygui.fileopenbox(title="Abre el archivo tipo .form")
                 extension=os.path.splitext(ruta)
                 if extension[1].upper()==".FORM":
                     print("[CARGAR ARCHIVO]: La extension es correcta")
